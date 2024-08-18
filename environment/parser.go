@@ -43,47 +43,31 @@ func (c *environmentCollector) Parse(ostype string, output string) ([]Environmen
 	}
 	for _, result := range results_power {
 		location := result["LOCATION"].(string)
-		model := result["MODEL"].(string)
-		status := strings.ToLower(strings.TrimSpace(result["STATUS"].(string)))
-		status_ok := status == "normal" || status == "good" || status == "ok" || status == "green"
+		sensor := result["SENSOR"].(string)
+		state := strings.ToLower(strings.TrimSpace(result["STATE"].(string)))
+		state_ok := state == "normal" || state == "good" || state == "ok" || state == "green"
 		x := EnvironmentItem{
-			Name:   strings.TrimSpace(location + " " + model),
-			IsTemp: false,
-			OK:     status_ok,
-			Status: status,
+			Name:    strings.TrimSpace(location + " " + sensor),
+			IsPower: true,
+			OK:      state_ok,
+			Status:  state,
+			Power:   util.Str2float64(result["VALUE"].(string)),
 		}
 		items = append(items, x)
 	}
 	for _, result := range results_fan {
 		location := result["LOCATION"].(string)
-		name := result["NAME"].(string)
-		status := strings.ToLower(strings.TrimSpace(result["STATUS"].(string)))
-		status1 := strings.ToLower(strings.TrimSpace(result["STATUS1"].(string)))
-		if len(status1) > 0 {
-			// parsing power supply fans results in single record with status of two fans
-			name = "0"
-		}
-		status_ok := status == "normal" || status == "good" || status == "ok" || status == "green"
+		sensor := result["SENSOR"].(string)
+		state := strings.ToLower(strings.TrimSpace(result["STATE"].(string)))
+		state_ok := state == "normal" || state == "good" || state == "ok" || state == "green"
 		x := EnvironmentItem{
-			Name:   strings.TrimSpace(location + " " + name),
+			Name:   strings.TrimSpace(location + " " + sensor),
 			IsFan:  true,
-			OK:     status_ok,
-			Status: status,
+			OK:     state_ok,
+			Status: state,
+			Fan:    util.Str2float64(result["VALUE"].(string)),
 		}
 		items = append(items, x)
-		if len(status1) > 0 {
-			// add info from the second power supply fan
-			name = "1"
-			status = status1
-			status_ok := status == "normal" || status == "good" || status == "ok" || status == "green"
-			x := EnvironmentItem{
-				Name:   strings.TrimSpace(location + " " + name),
-				IsFan:  true,
-				OK:     status_ok,
-				Status: status,
-			}
-			items = append(items, x)
-		}
 	}
 	return items, nil
 }

@@ -6,5 +6,8 @@ type EnvironmentItem struct {
 	OK          bool
 	IsTemp      bool `default:"false"`
 	IsFan       bool `default:"false"`
+	IsPower     bool `default:"false"`
 	Temperature float64
+	Fan         float64
+	Power       float64
 }

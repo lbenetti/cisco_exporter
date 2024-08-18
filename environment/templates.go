@@ -15,23 +15,13 @@ package environment
  * 1B  Not Present
  */
 var templ_power = `# show environment all
+Value SENSOR ((?:\w+\s?)+)
 Value LOCATION (\w+)
-Value MODEL ([\w\-]+)
-Value TYPE (\w+)
-Value CAPACITY (\d+\s\w+)
-Value STATUS ([nN]ot [pP]resent|\w+)
+Value STATE ((?:\w+\s?)+)
+Value VALUE (\d+)
 
 Start
-  ^Supply\s+Model -> Power_C9500
-  ^SW\s+PID -> Power_C9200L
-
-Power_C9500
-  ^${LOCATION}\s+${MODEL}\s+${TYPE}\s+${CAPACITY}\s+${STATUS} -> Record
-  ^$ -> End
-  
-Power_C9200L
-  ^${LOCATION}\s+${MODEL}\s+\w+\s+${STATUS} -> Record
-  ^${LOCATION}\s+${STATUS} -> Record
+  ^\s*(?:P: )?${SENSOR}\s+${LOCATION}\s+${STATE}\s+${VALUE} Watts -> Record
   ^$ -> End
 `
 
@@ -93,28 +83,12 @@ Start
  *
  */
 var templ_fan = `# show environment all
-Value Filldown NAME ((?:\w+\s?)+)
+Value SENSOR ((?:\w+\s?)+)
 Value LOCATION (\w+)
-Value STATUS ((?:\w+[\s\/]?)+)
-Value STATUS1 ((?:\w+[\s\/]?)+)
+Value STATE ((?:\w+\s?)+)
 Value VALUE (\d+)
-Value PWR_MODEL ([\w\-]+)
 
 Start
-  ^\s*${NAME}\s+${LOCATION}\s+${STATUS}\s+${VALUE} rpm -> Record
-  ^Tray\s+Status -> Fan_C9500
-  ^Supply\s+Model -> Fan_C9500_PWR
-  ^Switch\s+FAN -> Fan_C9200L
-
-Fan_C9500
-  ^${NAME}\s+${STATUS} -> Record
-  ^$ -> Start
-
-Fan_C9500_PWR
-  ^${LOCATION}\s+${PWR_MODEL}\s+\w+\s+\d+\s\w+\s+\w+\s+${STATUS}\s+${STATUS1} -> Record
-  ^$ -> Start
-
-Fan_C9200L
-  ^\s*${LOCATION}\s+${NAME}\s+${VALUE}\s+${STATUS} -> Record
-  ^$ -> Start
+  ^\s*(?:RPM: )?${SENSOR}\s+${LOCATION}\s+${STATE}\s+${VALUE} RPM -> Record
+  ^$ -> End
 `

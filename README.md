@@ -32,7 +32,7 @@ neighbors | Count of ARP & IPv6 ND entries | IOS XE/IOS
 
 ## Install
 ```bash
-go install github.com/lbenetti/cisco_exporter
+go install github.com/lbenetti/cisco_exporter@latest
 ```
 
 ## Usage

@@ -81,19 +81,11 @@ func (c *environmentCollector) Collect(client *rpc.Client, ch chan<- prometheus.
 			l = append(l, item.Status)
 			ch <- prometheus.MustNewConstMetric(temperaturesStatusDesc, prometheus.GaugeValue, float64(val), l...)
 		} else if item.IsFan {
-			val := 0
-			if item.OK {
-				val = 1
-			}
 			l = append(l, item.Status)
-			ch <- prometheus.MustNewConstMetric(fanStatusDesc, prometheus.GaugeValue, float64(val), l...)
-		} else {
-			val := 0
-			if item.OK {
-				val = 1
-			}
+			ch <- prometheus.MustNewConstMetric(fanStatusDesc, prometheus.GaugeValue, float64(item.Fan), l...)
+		} else if item.IsPower {
 			l = append(l, item.Status)
-			ch <- prometheus.MustNewConstMetric(powerSupplyDesc, prometheus.GaugeValue, float64(val), l...)
+			ch <- prometheus.MustNewConstMetric(powerSupplyDesc, prometheus.GaugeValue, float64(item.Power), l...)
 		}
 	}
 
