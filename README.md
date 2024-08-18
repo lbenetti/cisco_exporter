@@ -1,7 +1,7 @@
 # cisco_exporter
 Exporter for metrics from devices running Cisco (NX-OS/IOS XE/IOS) (via SSH) https://prometheus.io/
 
-This is a fork of https://github.com/lwlcom/cisco_exporter that seems to no longer be maintained.
+This is a fork of https://github.com/lbenetti/cisco_exporter that seems to no longer be maintained.
 
 # flags
 Name     | Description | Default
@@ -32,7 +32,7 @@ neighbors | Count of ARP & IPv6 ND entries | IOS XE/IOS
 
 ## Install
 ```bash
-go get -u github.com/matejv/cisco_exporter
+go install github.com/lbenetti/cisco_exporter
 ```
 
 ## Usage

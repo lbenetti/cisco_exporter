@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/lwlcom/cisco_exporter/util"
+	"github.com/lbenetti/cisco_exporter/util"
 )
 
 // ParseInterfacesIPv4 parses cli output and returns list of interface names

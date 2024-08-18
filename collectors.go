@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/lwlcom/cisco_exporter/bgp"
-	"github.com/lwlcom/cisco_exporter/collector"
-	"github.com/lwlcom/cisco_exporter/config"
-	"github.com/lwlcom/cisco_exporter/connector"
-	"github.com/lwlcom/cisco_exporter/environment"
-	"github.com/lwlcom/cisco_exporter/facts"
-	"github.com/lwlcom/cisco_exporter/interfaces"
-	"github.com/lwlcom/cisco_exporter/neighbors"
-	"github.com/lwlcom/cisco_exporter/optics"
+	"github.com/lbenetti/cisco_exporter/bgp"
+	"github.com/lbenetti/cisco_exporter/collector"
+	"github.com/lbenetti/cisco_exporter/config"
+	"github.com/lbenetti/cisco_exporter/connector"
+	"github.com/lbenetti/cisco_exporter/environment"
+	"github.com/lbenetti/cisco_exporter/facts"
+	"github.com/lbenetti/cisco_exporter/interfaces"
+	"github.com/lbenetti/cisco_exporter/neighbors"
+	"github.com/lbenetti/cisco_exporter/optics"
 )
 
 type collectors struct {

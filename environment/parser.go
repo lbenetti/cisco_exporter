@@ -4,8 +4,8 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/lwlcom/cisco_exporter/rpc"
-	"github.com/lwlcom/cisco_exporter/util"
+	"github.com/lbenetti/cisco_exporter/rpc"
+	"github.com/lbenetti/cisco_exporter/util"
 )
 
 // Parse parses cli output using textfsm and tries to find all temperature, power & fan related data

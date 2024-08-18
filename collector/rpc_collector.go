@@ -1,9 +1,9 @@
 package collector
 
 import (
-	"github.com/lwlcom/cisco_exporter/rpc"
+	"github.com/lbenetti/cisco_exporter/rpc"
 
-	"github.com/prometheus/client_golang/prometheus"
+	"github.com/lbenetti/client_golang/prometheus"
 )
 
 // RPCCollector collects metrics from Cisco using rpc.Client

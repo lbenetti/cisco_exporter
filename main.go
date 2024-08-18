@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/lwlcom/cisco_exporter/config"
-	"github.com/lwlcom/cisco_exporter/connector"
+	"github.com/lbenetti/cisco_exporter/config"
+	"github.com/lbenetti/cisco_exporter/connector"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	log "github.com/sirupsen/logrus"
@@ -135,7 +135,7 @@ func startServer() {
 			<h1>Cisco Exporter</h1>
 			<p><a href="` + *metricsPath + `">Metrics</a></p>
 			<h2>More information:</h2>
-			<p><a href="https://github.com/matejv/cisco_exporter">github.com/matejv/cisco_exporter</a></p>
+			<p><a href="https://github.com/lbenetti/cisco_exporter">github.com/lbenetti/cisco_exporter</a></p>
 			</body>
 			</html>`))
 	})

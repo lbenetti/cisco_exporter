@@ -3,9 +3,9 @@ package bgp
 import (
 	"log"
 
-	"github.com/lwlcom/cisco_exporter/rpc"
+	"github.com/lbenetti/cisco_exporter/rpc"
 
-	"github.com/lwlcom/cisco_exporter/collector"
+	"github.com/lbenetti/cisco_exporter/collector"
 	"github.com/prometheus/client_golang/prometheus"
 )
 
